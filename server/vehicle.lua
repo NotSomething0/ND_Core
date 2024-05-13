@@ -717,7 +717,8 @@ RegisterNetEvent("ND_Vehicles:takeVehicle", function(vehId, locations)
             type = "success",
             position = "bottom"
         })
-        MySQL.query.await("UPDATE nd_vehicles SET impounded = ? WHERE id = ?", {0, vehicle.id})
+
+        MySQL.query.await("UPDATE nd_vehicles SET impounded = ?, stored = ? WHERE id = ?", {0, 1, vehicle.id})
     end
 
     local info = NDCore.spawnOwnedVehicle(src, vehicle.id, isParkingAvailable(locations))
